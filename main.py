@@ -42,7 +42,12 @@ def stats(bot, update, args):
 
 def league(bot, update):
 	msg_ID = update.message.message_id
-	question = "@SaveTheBeeees @DankMemesCanMeltSteelBeams @hotterthanahotdog @bleachonmytshirt @Insolent_child league?"
+	question = "@SaveTheBeeees @AtraWolf @DankMemesCanMeltSteelBeams @hotterthanahotdog @bleachonmytshirt @Insolent_child league?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+def dota(bot, update):
+	msg_ID = update.message.message_id
+	question = "@prankpatrol @AtraWolf @Insolent_child dota?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 def fortnite(bot, update, args):
@@ -123,6 +128,7 @@ def main():
 	caps_handler = CommandHandler('caps', caps, pass_args=True)
 	stats_handler = CommandHandler('stats', stats, pass_args=True)
 	league_handler = CommandHandler('league', league)
+	dota_handler =  CommandHandler('dota', dota)
 	fortnite_handler = CommandHandler('fortnite', fortnite, pass_args=True)
 	overwatch_handler = CommandHandler('overwatch', overwatch)
 	forest_handler = CommandHandler('forest', forest)
@@ -138,6 +144,7 @@ def main():
 	dispatcher.add_handler(caps_handler)
 	dispatcher.add_handler(stats_handler)
 	dispatcher.add_handler(league_handler)
+	dispatcher.add_handler(dota_handler)
 	dispatcher.add_handler(fortnite_handler)
 	dispatcher.add_handler(overwatch_handler)
 	dispatcher.add_handler(forest_handler)
