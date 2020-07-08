@@ -200,6 +200,10 @@ def interjection(bot, update):
 		reply = strings.master_yi[i]
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
+	#If Josh says the word clash, then send KEKW sticker: CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA
+	if(from_user == "Joshua" and "clash" in msg_lst):
+		bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
+
 #If a user types in a command that doesn't exist then the bot will reply to them (doesn't work yet)
 def unknown(bot, update):
 	bot.send_message(chat_id=update.message.chat_id, text="Sorry I didn't understand that command. :(")
