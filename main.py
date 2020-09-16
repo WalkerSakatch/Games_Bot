@@ -174,7 +174,6 @@ def valorant(bot, update):
 	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Randomenzyme Valorant?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 		
-
 def among_us(bot, update):		
 	msg_ID = update.message.message_id
 	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Insolent_child @Randomenzyme Among Us?"
