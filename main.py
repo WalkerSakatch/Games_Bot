@@ -241,7 +241,7 @@ def main():
 	apex_handler = CommandHandler('apex', apex, pass_args=True)
 	overwatch_handler = CommandHandler('overwatch', overwatch)
 	valorant_handler = CommandHandler('valorant', valorant)
-	amongus_handler = CommandHandler('amongus', valorant)
+	amongus_handler = CommandHandler('amongus', among_us)
 	forest_handler = CommandHandler('forest', forest)
 	dauntless_handler = CommandHandler('dauntless', dauntless)
 	ror_handler = CommandHandler('ror', ror)
