@@ -69,7 +69,7 @@ def match(bot, update, args):
 def league(bot, update, args):
 	msg_ID = update.message.message_id
 	if not args:
-		question = "@SaveTheBeeees @anobdya @hotterthanahotdog @weloseifsejuanidoesntgank @TheKidThatOutRanEkko @Insolent_child @Atrawolf @bleachonmytshirt league?"
+		question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Randomenzyme @Insolent_child @Atrawolf @bleachonmytshirt league?"
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
 		summoner_name = ""
@@ -171,7 +171,13 @@ def overwatch(bot, update):
 #command /valorant makes the bot tag everyone in the chat that plays Overwatch by their telegram username
 def valorant(bot, update):		
 	msg_ID = update.message.message_id
-	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK Valorant?"
+	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Randomenzyme Valorant?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+		
+
+def among_us(bot, update):		
+	msg_ID = update.message.message_id
+	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Insolent_child @Randomenzyme Among Us?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 		
 #command /forest makes the bot tag everyone in the chat that plays The Forest by their telegram username
@@ -235,6 +241,7 @@ def main():
 	apex_handler = CommandHandler('apex', apex, pass_args=True)
 	overwatch_handler = CommandHandler('overwatch', overwatch)
 	valorant_handler = CommandHandler('valorant', valorant)
+	amongus_handler = CommandHandler('amongus', valorant)
 	forest_handler = CommandHandler('forest', forest)
 	dauntless_handler = CommandHandler('dauntless', dauntless)
 	ror_handler = CommandHandler('ror', ror)
@@ -257,6 +264,7 @@ def main():
 	dispatcher.add_handler(apex_handler)
 	dispatcher.add_handler(overwatch_handler)
 	dispatcher.add_handler(valorant_handler)
+	dispatcher.add_handler(amongus_handler)
 	dispatcher.add_handler(forest_handler)
 	dispatcher.add_handler(dauntless_handler)
 	dispatcher.add_handler(ror_handler)
