@@ -174,11 +174,6 @@ def valorant(bot, update):
 	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Randomenzyme Valorant?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 		
-def among_us(bot, update):		
-	msg_ID = update.message.message_id
-	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Insolent_child @Randomenzyme Among Us?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
-		
 #command /forest makes the bot tag everyone in the chat that plays The Forest by their telegram username
 def forest(bot, update):
 	msg_ID = update.message.message_id
@@ -240,7 +235,6 @@ def main():
 	apex_handler = CommandHandler('apex', apex, pass_args=True)
 	overwatch_handler = CommandHandler('overwatch', overwatch)
 	valorant_handler = CommandHandler('valorant', valorant)
-	amongus_handler = CommandHandler('amongus', among_us)
 	forest_handler = CommandHandler('forest', forest)
 	dauntless_handler = CommandHandler('dauntless', dauntless)
 	ror_handler = CommandHandler('ror', ror)
@@ -263,7 +257,6 @@ def main():
 	dispatcher.add_handler(apex_handler)
 	dispatcher.add_handler(overwatch_handler)
 	dispatcher.add_handler(valorant_handler)
-	dispatcher.add_handler(amongus_handler)
 	dispatcher.add_handler(forest_handler)
 	dispatcher.add_handler(dauntless_handler)
 	dispatcher.add_handler(ror_handler)
