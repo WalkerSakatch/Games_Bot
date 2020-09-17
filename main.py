@@ -210,7 +210,7 @@ def interjection(bot, update):
 	if(from_user == "Joshua" and "clash" in msg_lst):
 		bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
 
-	if("brown" in msg_lst or "browns" in msg_lst or "anindya" in msg_lst or "tirth" in msg_lst or "hardeep" in msg_lst or "anobdya" in msg_lst):
+	if("brown" in msg_lst or "browns" in msg_lst):
 		reply = "The shared iq phenomenon occurs when there is one or more person of South East Asian descent in an online video game lobby. There is 80 iq allocated for brown people to use upon entering a lobby, however the amount of iq does not increase depending on the amount of South East Asian players in the lobby. This means that if there is one in the lobby they receive all 80 IQ points (a relatively large amount to what they are used to), however if another South East Asian joins the lobby the first one is forced to give the new one a portion of his iq (usually half) which means on average each SEA player only has 40 iq. This is an extreme problem when there are 3 or more SEA players in one lobby as each one will have only 25 or less IQ to work with, much to the dismay of their intellectually superior teammates"
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
