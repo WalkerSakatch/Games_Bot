@@ -196,20 +196,21 @@ def dauntless(bot, update):
 def interjection(bot, update):
 	#get some info for each message, like who sent it
 	from_user = update.message.from_user.first_name
+	from_user = from_user.lower()
 	msg_ID = update.message.message_id
 	msg_text = update.message.text.lower()
 	msg_lst = msg_text.split()
 
 	#If Kalada says the word yi, then trash talk him (replies are picked at random from a list in strings.py)
-	if(from_user == "Kalada" and "yi" in msg_lst):
+	if(from_user == "kalada" and "yi" in msg_lst):
 		i = random.randrange(len(strings.master_yi))
 		reply = strings.master_yi[i]
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
 	#If Josh says the word clash, then send KEKW sticker: CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA
-	if(from_user == "Joshua" || from_user == "Josh" || from_user == "josh"):
-		anti_josh_txt = msg_text.strip(".,!@#$%*/?\"'][:;_-()")
-		if ("clash" in anti_josh_txt):
+	if(from_user == "joshua" or from_user == "josh"):
+		#anti_josh_txt = msg_text.strip(".,!@#$%*/?\"'][:;_-()")
+		if ("clash" in msg_text):
 			bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
 
 	if("brown" in msg_lst or "browns" in msg_lst):
