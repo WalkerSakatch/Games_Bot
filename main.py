@@ -192,6 +192,12 @@ def dauntless(bot, update):
 	question = "@prankpatrol @Insolent_child @AtraWolf @SaveTheBeeees @anobdya dauntless?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
+#command /mhw makes the bot tag everyone in the chat that plays Monster hunter world by their telegram name
+def mhw(bot, update):
+	msg_ID = update.message.message_id
+	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @bleachonmytshirt Monster Hunter?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
 #Method that reads every message sent in chat, and if a user says certain words it will interrupt.
 def interjection(bot, update):
 	#get some info for each message, like who sent it
