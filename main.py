@@ -207,7 +207,6 @@ def interjection(bot, update):
 	msg_text = update.message.text.lower()
 	msg_lst = msg_text.split()
 
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=str(from_user.id))
 	#If Kalada says the word yi, then trash talk him (replies are picked at random from a list in strings.py)
 	if(from_user == "kalada" and "yi" in msg_lst):
 		i = random.randrange(len(strings.master_yi))
@@ -217,6 +216,7 @@ def interjection(bot, update):
 	#If Josh says the word clash, then send KEKW sticker: CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA
 	if(from_user == "joshua" or from_user == "josh"):
 		#anti_josh_txt = msg_text.strip(".,!@#$%*/?\"'][:;_-()")
+		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=update.message.from_user.id)
 		if ("clash" in msg_text):
 			bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
 
