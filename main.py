@@ -208,7 +208,7 @@ def interjection(bot, update):
 	msg_lst = msg_text.split()
 
 	#If Kalada says the word yi, then trash talk him (replies are picked at random from a list in strings.py)
-	if(from_user == "kalada" and "yyi" in msg_lst):
+	if(from_user == "kalada" and "yyeai" in msg_lst):
 		i = random.randrange(len(strings.master_yi))
 		reply = strings.master_yi[i]
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
