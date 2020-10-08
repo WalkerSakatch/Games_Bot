@@ -215,7 +215,7 @@ def interjection(bot, update):
 
 	#If Josh says the word clash, then send KEKW sticker: CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA
 	if(update.message.from_user.id = 1052764994):
-		#bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
+		bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
 		#anti_josh_txt = msg_text.strip(".,!@#$%*/?\"'][:;_-()")
 		if ("clash" in msg_text):
 			bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
