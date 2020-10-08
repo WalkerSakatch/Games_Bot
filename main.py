@@ -259,6 +259,7 @@ def main():
 	dauntless_handler = CommandHandler('dauntless', dauntless)
 	ror_handler = CommandHandler('ror', ror)
 	r6s_handler = CommandHandler('r6', r6)
+	mhw_handler = CommandHandler('mhw', mhw)
 	interjection_handler = MessageHandler(Filters.all, interjection)
 
 	#Unkown doesn't quite work yet
@@ -282,6 +283,7 @@ def main():
 	dispatcher.add_handler(dauntless_handler)
 	dispatcher.add_handler(ror_handler)
 	dispatcher.add_handler(r6s_handler)
+	dispatcher.add_handler(mhw_handler)
 
 	dispatcher.add_handler(interjection_handler)	
 	dispatcher.add_handler(unknown_handler)
