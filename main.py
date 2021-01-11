@@ -69,7 +69,7 @@ def match(bot, update, args):
 def league(bot, update, args):
 	msg_ID = update.message.message_id
 	if not args:
-		question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Randomenzyme @Insolent_child @Atrawolf @bleachonmytshirt league?"
+		question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Nibbachu @Insolent_child @Atrawolf @bleachonmytshirt league?"
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
 		summoner_name = ""
@@ -171,7 +171,7 @@ def overwatch(bot, update):
 #command /valorant makes the bot tag everyone in the chat that plays Valorant by their telegram username
 def valorant(bot, update):		
 	msg_ID = update.message.message_id
-	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Randomenzyme Valorant?"
+	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Nibbachu Valorant?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /amongus makes the bot tag everyone in the chat that plays Valorant by their telegram username
@@ -196,6 +196,11 @@ def dauntless(bot, update):
 def mhw(bot, update):
 	msg_ID = update.message.message_id
 	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @bleachonmytshirt Monster Hunter?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+def warzone(bot, update):
+	msg_ID = update.message.message_id
+	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @Nibbachu @Nav_Senpai @bleachonmytshirt We droppin?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #Method that reads every message sent in chat, and if a user says certain words it will interrupt.
@@ -261,6 +266,7 @@ def main():
 	ror_handler = CommandHandler('ror', ror)
 	r6s_handler = CommandHandler('r6', r6)
 	mhw_handler = CommandHandler('mhw', mhw)
+	warzone_handler = CommandHandler('warzone', warzone)
 	interjection_handler = MessageHandler(Filters.all, interjection)
 
 	#Unkown doesn't quite work yet
@@ -285,6 +291,7 @@ def main():
 	dispatcher.add_handler(ror_handler)
 	dispatcher.add_handler(r6s_handler)
 	dispatcher.add_handler(mhw_handler)
+	dispatcher.add_handler(warzone_handler)
 
 	dispatcher.add_handler(interjection_handler)	
 	dispatcher.add_handler(unknown_handler)
