@@ -14,8 +14,6 @@ import apex as apx
 #Telegram gives each bot a specific identifier or token that is required for it to work
 TOKEN = os.getenv('GAMES_BOT_TOKEN')
 
-league()
-
 #command /start sends a message
 def start(bot, update):
 	bot.send_message(chat_id=update.message.chat_id, text="Beep Beep Boop! I am a bot!")
