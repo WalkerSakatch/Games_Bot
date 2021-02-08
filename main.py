@@ -14,6 +14,8 @@ import apex as apx
 #Telegram gives each bot a specific identifier or token that is required for it to work
 TOKEN = os.getenv('GAMES_BOT_TOKEN')
 
+league()
+
 #command /start sends a message
 def start(bot, update):
 	bot.send_message(chat_id=update.message.chat_id, text="Beep Beep Boop! I am a bot!")
@@ -69,7 +71,7 @@ def match(bot, update, args):
 def league(bot, update, args):
 	msg_ID = update.message.message_id
 	if not args:
-		question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Nibbachu @Insolent_child @Atrawolf @bleachonmytshirt league?"
+		question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Randomenzyme @Insolent_child @Atrawolf @bleachonmytshirt league?"
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
 		summoner_name = ""
@@ -91,6 +93,11 @@ def dota(bot, update):
 def ror(bot, update):
 	msg_ID = update.message.message_id
 	question = "@SaveTheBeeees @anobdya @AtraWolf @prankpatrol Risk of Rain 2?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+def lor(bot, update):
+	msg_ID = update.message.message_id
+	question = "@SaveTheBeeees @anobdya @GangplankWinsIfHeDoesntAFK @Atrawolf @bantzdealer @bleachonmytshirt Runeterra?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /ror makes the bot tag everyone in the chat that plays Risk of Rain by their telegram username
@@ -161,7 +168,6 @@ def apex(bot, update, args):
 	resp = apx.getStats(platform, player_name)
 	bot.send_message(parse_mode='MARKDOWN', chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 		
-
 #command /overwatch makes the bot tag everyone in the chat that plays Overwatch by their telegram username
 def overwatch(bot, update):		
 	msg_ID = update.message.message_id
@@ -171,7 +177,7 @@ def overwatch(bot, update):
 #command /valorant makes the bot tag everyone in the chat that plays Valorant by their telegram username
 def valorant(bot, update):		
 	msg_ID = update.message.message_id
-	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Nibbachu Valorant?"
+	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Randomenzyme Valorant?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /amongus makes the bot tag everyone in the chat that plays Valorant by their telegram username
@@ -198,11 +204,6 @@ def mhw(bot, update):
 	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @bleachonmytshirt Monster Hunter?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
-def warzone(bot, update):
-	msg_ID = update.message.message_id
-	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @Nibbachu @Nav_Senpai @bleachonmytshirt We droppin?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
-
 #Method that reads every message sent in chat, and if a user says certain words it will interrupt.
 def interjection(bot, update):
 	#get some info for each message, like who sent it
@@ -213,10 +214,10 @@ def interjection(bot, update):
 	msg_lst = msg_text.split()
 
 	#If Kalada says the word yi, then trash talk him (replies are picked at random from a list in strings.py)
-	if(from_user == "kalada" and "yyeai" in msg_lst):
-		i = random.randrange(len(strings.master_yi))
-		reply = strings.master_yi[i]
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
+	#if(from_user == "kalada" and "yyeai" in msg_lst):
+	#	i = random.randrange(len(strings.master_yi))
+	#	reply = strings.master_yi[i]
+	#	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
 	#If Josh says the word clash, then send KEKW sticker: CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA
 	if(update.message.from_user.id == 1052764994):
@@ -249,6 +250,7 @@ def main():
 	#Each command that the bot can handle needs a "Handler". These basically map the command (/[command] to a method in main.py)
 	#It is set up so the commands execute methods with the exact same name, but the command is the first argument, and the method that it executes is the second.
 	#pass_args says whether the command can take additional arguments (bot uses these for summoner names, or fortnite names). Default is to False
+	
 	start_handler = CommandHandler('start', start)
 	help_handler = CommandHandler('help', help)
 	caps_handler = CommandHandler('caps', caps, pass_args=True)
@@ -264,9 +266,9 @@ def main():
 	forest_handler = CommandHandler('forest', forest)
 	dauntless_handler = CommandHandler('dauntless', dauntless)
 	ror_handler = CommandHandler('ror', ror)
+	lor_handler = CommandHandler('lor', lor)
 	r6s_handler = CommandHandler('r6', r6)
 	mhw_handler = CommandHandler('mhw', mhw)
-	warzone_handler = CommandHandler('warzone', warzone)
 	interjection_handler = MessageHandler(Filters.all, interjection)
 
 	#Unkown doesn't quite work yet
@@ -289,9 +291,9 @@ def main():
 	dispatcher.add_handler(forest_handler)
 	dispatcher.add_handler(dauntless_handler)
 	dispatcher.add_handler(ror_handler)
+	dispatcher.add_handler(lor_handler)
 	dispatcher.add_handler(r6s_handler)
 	dispatcher.add_handler(mhw_handler)
-	dispatcher.add_handler(warzone_handler)
 
 	dispatcher.add_handler(interjection_handler)	
 	dispatcher.add_handler(unknown_handler)
