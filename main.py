@@ -169,7 +169,7 @@ def apex(bot, update, args):
 #command /overwatch makes the bot tag everyone in the chat that plays Overwatch by their telegram username
 def overwatch(bot, update):		
 	msg_ID = update.message.message_id
-	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf Overwatch?"
+	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @fosbat Overwatch?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /valorant makes the bot tag everyone in the chat that plays Valorant by their telegram username
