@@ -68,23 +68,29 @@ def match(bot, update, args):
 #command /league makes the bot tag everyone in the chat that plays League of Legends by their telegram username
 def league(bot, update, args):
 	msg_ID = update.message.message_id
-	if not args:
-		question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Randomenzyme @Insolent_child @Atrawolf @bleachonmytshirt league?"
+	
+	if(update.message.chat_id == -507793116):
+		question = "@hey brother league?"
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
-		summoner_name = ""
-		for i in args:
-			summoner_name = summoner_name + i + " "
+		if not args:
+			question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Randomenzyme @Insolent_child @Atrawolf @bleachonmytshirt league?"
+			bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+		
+		else:
+			summoner_name = ""
+			for i in args:
+				summoner_name = summoner_name + i + " "
 
-		bot.send_message(parse_mode='MARKDOWN', chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="beep boop one sec")
-		ranked_stats = lg.getAllStats(summoner_name)
-		bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
-		bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
+			bot.send_message(parse_mode='MARKDOWN', chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="beep boop one sec")
+			ranked_stats = lg.getAllStats(summoner_name)
+			bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
+			bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
 
 #command /dota makes the bot tag everyone in the chat that plays Dota by their telegram username
 def dota(bot, update):
 	msg_ID = update.message.message_id
-	question = "@AtraWolf @prankpatrol @anobdya @SaveTheBeeees dota?"
+	question = "@Insolent_child @AtraWolf @prankpatrol dota?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /ror makes the bot tag everyone in the chat that plays Risk of Rain by their telegram username
@@ -169,7 +175,7 @@ def apex(bot, update, args):
 #command /overwatch makes the bot tag everyone in the chat that plays Overwatch by their telegram username
 def overwatch(bot, update):		
 	msg_ID = update.message.message_id
-	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @fosbat Overwatch?"
+	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf Overwatch?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /valorant makes the bot tag everyone in the chat that plays Valorant by their telegram username
@@ -217,13 +223,11 @@ def interjection(bot, update):
 	#	reply = strings.master_yi[i]
 	#	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
-
-
 	#If Josh says the word clash, then send KEKW sticker: CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA
 	if(update.message.from_user.id == 1052764994):
 		#bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
 		#anti_josh_txt = msg_text.strip(".,!@#$%*/?\"'][:;_-()")
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=update.message.chat_id)
+		
 		if ("clash" in msg_text):
 			bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
 
