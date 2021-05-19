@@ -223,7 +223,7 @@ def nba(bot, update):
 
 def dice(bot, update):
 	msg_ID = update.message.message_id
-	bot.send_dice(chatid=update.message.chat_id, reply_to_message_id=msg_ID, emoji=u'\U0001F3B2')
+	bot.send_dice(chat_id=update.message.chat_id, reply_to_message_id=msg_ID)
 
 #command /mhw makes the bot tag everyone in the chat that plays Monster hunter world by their telegram name
 def mhw(bot, update):
