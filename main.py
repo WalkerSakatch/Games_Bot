@@ -300,6 +300,7 @@ def main():
 	lor_handler = CommandHandler('lor', lor)
 	r6s_handler = CommandHandler('r6', r6)
 	mhw_handler = CommandHandler('mhw', mhw)
+	dice_handler = CommandHandler('dice', dice)
 	interjection_handler = MessageHandler(Filters.all, interjection)
 
 	#Unkown doesn't quite work yet
@@ -328,6 +329,7 @@ def main():
 	dispatcher.add_handler(lor_handler)
 	dispatcher.add_handler(r6s_handler)
 	dispatcher.add_handler(mhw_handler)
+	dispatcher.add_handler(dice_handler)
 
 	dispatcher.add_handler(interjection_handler)	
 	dispatcher.add_handler(unknown_handler)
