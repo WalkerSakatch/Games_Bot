@@ -69,6 +69,7 @@ def match(bot, update, args):
 def league(bot, update, args):
 	msg_ID = update.message.message_id
 	
+	#-507793116 for joshs other chat
 	if(update.message.chat_id == -507793116):
 		question = "@hey brother league?"
 		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
@@ -202,6 +203,25 @@ def dauntless(bot, update):
 	question = "@prankpatrol @Insolent_child @AtraWolf @SaveTheBeeees @anobdya dauntless?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
+def rl(bot, update):
+	msg_ID = update.message.message_id
+	if(update.message.chat_id == -507793116):
+		question = "josh rl?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+def gta(bot, update):
+	msg_ID = update.message.message_id
+	if(update.message.chat_id == -507793116):
+		question = "josh gta?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+def nba(bot, update):
+	msg_ID = update.message.message_id
+	if(update.message.chat_id == -507793116):
+		question = "josh nba?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+
 #command /mhw makes the bot tag everyone in the chat that plays Monster hunter world by their telegram name
 def mhw(bot, update):
 	msg_ID = update.message.message_id
@@ -270,6 +290,9 @@ def main():
 	amongus_handler = CommandHandler('amongus', among_us)
 	forest_handler = CommandHandler('forest', forest)
 	dauntless_handler = CommandHandler('dauntless', dauntless)
+	rl_handler = CommandHandler('rl', rl)
+	gta_handler = CommandHandler('gta', gta)
+	nba_handler = CommandHandler('nba', nba)
 	ror_handler = CommandHandler('ror', ror)
 	lor_handler = CommandHandler('lor', lor)
 	r6s_handler = CommandHandler('r6', r6)
@@ -295,6 +318,9 @@ def main():
 	dispatcher.add_handler(amongus_handler)
 	dispatcher.add_handler(forest_handler)
 	dispatcher.add_handler(dauntless_handler)
+	dispatcher.add_handler(rl_handler)
+	dispatcher.add_handler(gta_handler)
+	dispatcher.add_handler(nba_handler)
 	dispatcher.add_handler(ror_handler)
 	dispatcher.add_handler(lor_handler)
 	dispatcher.add_handler(r6s_handler)
