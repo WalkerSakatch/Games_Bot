@@ -91,7 +91,7 @@ def league(bot, update, args):
 #command /dota makes the bot tag everyone in the chat that plays Dota by their telegram username
 def dota(bot, update):
 	msg_ID = update.message.message_id
-	question = "@Insolent_child @AtraWolf @prankpatrol dota?"
+	question = "@AtraWolf @prankpatrol @anobdya dota?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /ror makes the bot tag everyone in the chat that plays Risk of Rain by their telegram username
