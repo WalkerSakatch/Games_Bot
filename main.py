@@ -24,14 +24,14 @@ def help(update, context):
 	context.bot.send_message(chat_id=update.message.chat_id, text="I am poorly programmed and cannot help :(")
 
 #command /stats [name] sends back info on the most played champions in League of Legends for the name given
-def stats(update, context, args):
+def stats(update, context):
 	summoner_name = ""
 	
 	#msg_ID is the ID of the message that called the command, this is used so the bot can reply to the specific message
 	msg_ID = update.message.message_id
 
 	#args given after the command are given as a list, this basically forms the players name if there were spaces in it
-	for i in args:
+	for i in context.args:
 		summoner_name = summoner_name + i + " "
 	
 	reply = ""
@@ -51,10 +51,10 @@ def stats(update, context, args):
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
 #command /match [name] sends back an image detailing the players and champions in the specified players League of Legends game. (This command takes a while to finish, but can be fixed)
-def match(update, context, args):
+def match(update, context):
 	summoner_name = ""
 	msg_ID = update.message.message_id
-	for i in args:
+	for i in context.args:
 		summoner_name = summoner_name + i + " "
 
 	#Bot sends a message saying that it is working on the request
@@ -64,7 +64,7 @@ def match(update, context, args):
 	lg.getCurrentGame(summoner_name)
 
 	#The image being modified is saved to disk, so once the method above is finished the bot can send the file, and telegram takes care of the rest
-	bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("tesload.png", 'rb'))
+	context.bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("tesload.png", 'rb'))
 
 #command /league makes the bot tag everyone in the chat that plays League of Legends by their telegram username
 def league(update, context):
@@ -135,29 +135,29 @@ def r6(update, context):
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	
 #command /fortnite can take optional arguments
-def fortnite(update, context, args):
+def fortnite(update, context):
 	msg_ID = update.message.message_id
 
 	#command /fortnite makes the bot tag everyone in the chat that plays Fortnite by their telegram username
-	if not args:
+	if not context.args:
 		question = "@TheBoneDoctor @prankpatrol @Insolent_child @bleachonmytshirt @AtraWolf @hotterthanahotdog @SaveTheBeeees fortnite?"
 		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 	#command /fortnite shop makes the bot reply with an album of images detailing what is currently in the fortnite shop
-	elif (len(args) == 1 and args[0] == "shop"):
+	elif (len(context.args) == 1 and context.args[0] == "shop"):
 		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Let me open the shop up! One second please.")
-		bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
+		context.bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
 
 		#Sends an album with every weekly item in the shop
 		resp = fnite.getWeeklyStore()
-		bot.send_media_group(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, media=resp)
+		context.bot.send_media_group(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, media=resp)
 		
 		#Sends an album with every daily item in the shop
 		resp = fnite.getDailyStore()
-		bot.send_media_group(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, media=resp)
+		context.bot.send_media_group(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, media=resp)
 
 	#command /fortnite challenges makes the bot reply with the current weekly challenges in Fortnite
-	elif (len(args) == 1 and args[0] == "challenges"):
+	elif (len(context.args) == 1 and context.args[0] == "challenges"):
 		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Let me check the challenges")
 		resp = fnite.getChallenges()
 		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
@@ -165,17 +165,17 @@ def fortnite(update, context, args):
 	#command /fortnite [name] gets the bot to send [name]'s stats in the current Fortnite season
 	else:
 		name = ""
-		for word in args:
+		for word in context.args:
 			name = name + word + " "
 
 		resp = fnite.getStats(name)
 		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 
-def apex(update, context, args):
+def apex(update, context):
 	msg_ID = update.message.message_id
 
 	#-507793116 for joshs other chat
-	if not args:
+	if not context.args:
 		if(update.message.chat_id == -507793116):
 			question = "@Bush69420 @stooolfan @Uncle_Phil9 @SyyCam apex?"
 			context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
@@ -183,9 +183,9 @@ def apex(update, context, args):
 			question = "@SaveTheBeeees @anobdya @hotterthanahotdog @AtraWolf @bleachonmytshirt @prankpatrol apex?"
 			context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
-		platform = args[0]
+		platform = context.args[0]
 		player_name = ""
-		for i in args[1:]:
+		for i in context.args[1:]:
 				player_name = player_name + i + " "
 
 
@@ -313,8 +313,8 @@ def unknown(update, context):
 	context.bot.send_message(chat_id=update.message.chat_id, text="Sorry I didn't understand that command. :(")
 
 #command /caps [string] makes the bot reply with the same string but in all upper case
-def caps(update, context, args):
-	text_caps = ' '.join(args).upper()
+def caps(update, context):
+	text_caps = ' '.join(context.args).upper()
 	context.bot.send_message(chat_id=update.message.chat_id, text=text_caps)
 
 #Main method that is ran when the bot is started up
@@ -331,15 +331,15 @@ def main():
 	
 	start_handler = CommandHandler('start', start)
 	help_handler = CommandHandler('help', help)
-	caps_handler = CommandHandler('caps', caps, pass_args=True)
-	stats_handler = CommandHandler('stats', stats, pass_args=True)
-	match_handler = CommandHandler('match', match, pass_args=True)
+	caps_handler = CommandHandler('caps', caps)
+	stats_handler = CommandHandler('stats', stats)
+	match_handler = CommandHandler('match', match)
 	league_handler = CommandHandler('league', league)
 	aram_handler = CommandHandler('aram', aram)
 	tft_handler = CommandHandler('tft', tft)
 	dota_handler = CommandHandler('dota', dota)
-	fortnite_handler = CommandHandler('fortnite', fortnite, pass_args=True)
-	apex_handler = CommandHandler('apex', apex, pass_args=True)
+	fortnite_handler = CommandHandler('fortnite', fortnite)
+	apex_handler = CommandHandler('apex', apex)
 	overwatch_handler = CommandHandler('overwatch', overwatch)
 	valorant_handler = CommandHandler('valorant', valorant)
 	amongus_handler = CommandHandler('amongus', among_us)
