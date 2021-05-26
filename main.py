@@ -100,10 +100,14 @@ def tft(bot, update):
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /dota makes the bot tag everyone in the chat that plays Dota by their telegram username
-def dota(bot, update):
-	msg_ID = update.message.message_id
-	question = "@Insolent_child @AtraWolf @prankpatrol dota?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+#def dota(bot, update):
+#	msg_ID = update.message.message_id
+#	question = "@Insolent_child @AtraWolf @prankpatrol dota?"
+#	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+def dota(update, context):
+	context.bot.send_message(chat_id=update.message.chat_id, text="test")
+
 
 #command /ror makes the bot tag everyone in the chat that plays Risk of Rain by their telegram username
 def ror(bot, update):
