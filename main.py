@@ -67,7 +67,7 @@ def match(update, context, args):
 	bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("tesload.png", 'rb'))
 
 #command /league makes the bot tag everyone in the chat that plays League of Legends by their telegram username
-def league(update, context, args):
+def league(update, context):
 	msg_ID = update.message.message_id
 	
 	#-507793116 for joshs other chat
@@ -75,19 +75,19 @@ def league(update, context, args):
 		question = "@hey brother league?"
 		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
-		if not args:
+		if not context.args:
 			question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Randomenzyme @Insolent_child @Atrawolf @bleachonmytshirt league?"
 			context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 		
 		else:
 			summoner_name = ""
-			for i in args:
+			for i in context.args:
 				summoner_name = summoner_name + i + " "
 
 			context.bot.send_message(parse_mode='MARKDOWN', chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="beep boop one sec")
 			ranked_stats = lg.getAllStats(summoner_name)
-			bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
-			bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
+			context.bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
 
 def aram(update, context):
 	msg_ID = update.message.message_id
@@ -302,7 +302,7 @@ def interjection(update, context):
 		#anti_josh_txt = msg_text.strip(".,!@#$%*/?\"'][:;_-()")
 		
 		if ("clash" in msg_text):
-			bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
+			context.bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
 
 	if("brown" in msg_lst or "browns" in msg_lst):
 		reply = "The shared iq phenomenon occurs when there is one or more person of South East Asian descent in an online video game lobby. There is 80 iq allocated for brown people to use upon entering a lobby, however the amount of iq does not increase depending on the amount of South East Asian players in the lobby. This means that if there is one in the lobby they receive all 80 IQ points (a relatively large amount to what they are used to), however if another South East Asian joins the lobby the first one is forced to give the new one a portion of his iq (usually half) which means on average each SEA player only has 40 iq. This is an extreme problem when there are 3 or more SEA players in one lobby as each one will have only 25 or less IQ to work with, much to the dismay of their intellectually superior teammates"
