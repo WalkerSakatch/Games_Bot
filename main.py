@@ -252,15 +252,13 @@ def nba(update, context):
 def dice(update, context):
 	msg_ID = update.message.message_id
 	#emoji='\U0001F3B0'
-	bot.send_dice(chat_id=update.message.chat_id, reply_to_message_id=msg_ID)
+	context.bot.send_dice(chat_id=update.message.chat_id, reply_to_message_id=msg_ID)
 
 #command /mhw makes the bot tag everyone in the chat that plays Monster hunter world by their telegram name
 def mhw(update, context):
 	msg_ID = update.message.message_id
 	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @bleachonmytshirt Monster Hunter?"
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
-
-
 
 ######DATABASE FORTUNE / SUBMIT STUFF BELOW########
 
