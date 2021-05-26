@@ -16,22 +16,22 @@ import apex as apx
 TOKEN = '474898864:AAGroqV6gFJP5d8oPJhu_lDwSq92N_Atg3k'
 
 #command /start sends a message
-def start(bot, update):
-	bot.send_message(chat_id=update.message.chat_id, text="Beep Beep Boop! I am a bot!")
+def start(update, context):
+	context.bot.send_message(chat_id=update.message.chat_id, text="Beep Beep Boop! I am a bot!")
 
 #command /help sends a funny reply that isn't that helpful
-def help(bot, update):
-	bot.send_message(chat_id=update.message.chat_id, text="I am poorly programmed and cannot help :(")
+def help(update, context):
+	context.bot.send_message(chat_id=update.message.chat_id, text="I am poorly programmed and cannot help :(")
 
 #command /stats [name] sends back info on the most played champions in League of Legends for the name given
-def stats(bot, update, args):
+def stats(update, context):
 	summoner_name = ""
 	
 	#msg_ID is the ID of the message that called the command, this is used so the bot can reply to the specific message
 	msg_ID = update.message.message_id
 
 	#args given after the command are given as a list, this basically forms the players name if there were spaces in it
-	for i in args:
+	for i in context.args:
 		summoner_name = summoner_name + i + " "
 	
 	reply = ""
@@ -48,138 +48,144 @@ def stats(bot, update, args):
 		reply = "Wow, something went wrong!"
 	
 	#Bot replies to the message with the command with the reply string
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
 #command /match [name] sends back an image detailing the players and champions in the specified players League of Legends game. (This command takes a while to finish, but can be fixed)
-def match(bot, update, args):
+def match(update, context):
 	summoner_name = ""
 	msg_ID = update.message.message_id
-	for i in args:
+	for i in context.args:
 		summoner_name = summoner_name + i + " "
 
 	#Bot sends a message saying that it is working on the request
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Let me login and check the game! One second")
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Let me login and check the game! One second")
 	
 	#Calls a method that will modify an image that the bot will send. (method found in league.py)
 	lg.getCurrentGame(summoner_name)
 
 	#The image being modified is saved to disk, so once the method above is finished the bot can send the file, and telegram takes care of the rest
-	bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("tesload.png", 'rb'))
+	context.bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("tesload.png", 'rb'))
 
 #command /league makes the bot tag everyone in the chat that plays League of Legends by their telegram username
-def league(bot, update, args):
+def league(update, context):
 	msg_ID = update.message.message_id
 	
 	#-507793116 for joshs other chat
 	if(update.message.chat_id == -507793116):
 		question = "@hey brother league?"
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
-		if not args:
+		if not context.args:
 			question = "@SaveTheBeeees @anobdya @hotterthanahotdog @GangplankWinsIfHeDoesntAFK @Randomenzyme @Insolent_child @Atrawolf @bleachonmytshirt league?"
-			bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+			context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 		
 		else:
 			summoner_name = ""
-			for i in args:
+			for i in context.args:
 				summoner_name = summoner_name + i + " "
 
-			bot.send_message(parse_mode='MARKDOWN', chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="beep boop one sec")
+			context.bot.send_message(parse_mode='MARKDOWN', chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="beep boop one sec")
 			ranked_stats = lg.getAllStats(summoner_name)
-			bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
-			bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
+			context.bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
+			context.bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
 
-def aram(bot, update):
+def aram(update, context):
 	msg_ID = update.message.message_id
 	question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam @GangplankWinsIfHeDoesntAFK ARAM?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
-def tft(bot, update):
+def tft(update, context):
 	msg_ID = update.message.message_id
 	question = "@Bush69420 @PuddlesofDoom @kivorkdts @Uncle_Phil9 @SyyCam TFT?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /dota makes the bot tag everyone in the chat that plays Dota by their telegram username
-def dota(bot, update):
+#def dota(update, context):
+#	msg_ID = update.message.message_id
+#	question = "@Insolent_child @AtraWolf @prankpatrol dota?"
+#	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+def dota(update, context):
 	msg_ID = update.message.message_id
-	question = "@Insolent_child @AtraWolf @prankpatrol dota?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	question = "@AtraWolf @prankpatrol @anobdya dota?"
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
 
 #command /ror makes the bot tag everyone in the chat that plays Risk of Rain by their telegram username
-def ror(bot, update):
+def ror(update, context):
 	msg_ID = update.message.message_id
 	question = "@SaveTheBeeees @anobdya @AtraWolf @prankpatrol Risk of Rain 2?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
-def lor(bot, update):
+def lor(update, context):
 	msg_ID = update.message.message_id
 	#-507793116 for joshs other chat
 	if(update.message.chat_id == -507793116):
 		question = "@stooolfan @GangplankWinsIfHeDoesntAFK Runeterra?"
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
 		msg_ID = update.message.message_id
 		question = "@SaveTheBeeees @anobdya @GangplankWinsIfHeDoesntAFK @Atrawolf @bantzdealer @bleachonmytshirt Runeterra?"
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /ror makes the bot tag everyone in the chat that plays Risk of Rain by their telegram username
-def r6(bot, update):
+def r6(update, context):
 	msg_ID = update.message.message_id
 	question = "@SaveTheBeeees @anobdya @Insolent_child @AtraWolf @prankpatrol @bleachonmytshirt R6 Siege?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	
 #command /fortnite can take optional arguments
-def fortnite(bot, update, args):
+def fortnite(update, context):
 	msg_ID = update.message.message_id
 
 	#command /fortnite makes the bot tag everyone in the chat that plays Fortnite by their telegram username
-	if not args:
+	if not context.args:
 		question = "@TheBoneDoctor @prankpatrol @Insolent_child @bleachonmytshirt @AtraWolf @hotterthanahotdog @SaveTheBeeees fortnite?"
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 	#command /fortnite shop makes the bot reply with an album of images detailing what is currently in the fortnite shop
-	elif (len(args) == 1 and args[0] == "shop"):
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Let me open the shop up! One second please.")
-		bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
+	elif (len(context.args) == 1 and context.args[0] == "shop"):
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Let me open the shop up! One second please.")
+		context.bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
 
 		#Sends an album with every weekly item in the shop
 		resp = fnite.getWeeklyStore()
-		bot.send_media_group(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, media=resp)
+		context.bot.send_media_group(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, media=resp)
 		
 		#Sends an album with every daily item in the shop
 		resp = fnite.getDailyStore()
-		bot.send_media_group(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, media=resp)
+		context.bot.send_media_group(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, media=resp)
 
 	#command /fortnite challenges makes the bot reply with the current weekly challenges in Fortnite
-	elif (len(args) == 1 and args[0] == "challenges"):
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Let me check the challenges")
+	elif (len(context.args) == 1 and context.args[0] == "challenges"):
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Let me check the challenges")
 		resp = fnite.getChallenges()
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 	
 	#command /fortnite [name] gets the bot to send [name]'s stats in the current Fortnite season
 	else:
 		name = ""
-		for word in args:
+		for word in context.args:
 			name = name + word + " "
 
 		resp = fnite.getStats(name)
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 
-def apex(bot, update, args):
+def apex(update, context):
 	msg_ID = update.message.message_id
 
 	#-507793116 for joshs other chat
-	if not args:
+	if not context.args:
 		if(update.message.chat_id == -507793116):
 			question = "@Bush69420 @stooolfan @Uncle_Phil9 @SyyCam apex?"
-			bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+			context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 		else:
 			question = "@SaveTheBeeees @anobdya @hotterthanahotdog @AtraWolf @bleachonmytshirt @prankpatrol apex?"
-			bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+			context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
-		platform = args[0]
+		platform = context.args[0]
 		player_name = ""
-		for i in args[1:]:
+		for i in context.args[1:]:
 				player_name = player_name + i + " "
 
 
@@ -190,93 +196,93 @@ def apex(bot, update, args):
 		elif(platform.lower() == 'pc'):
 			platform = 5
 		else:
-			bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Type /apex [platform] [name]\nPlatforms are xbox, psn, pc")
+			context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="Type /apex [platform] [name]\nPlatforms are xbox, psn, pc")
 	
 	resp = apx.getStats(platform, player_name)
-	bot.send_message(parse_mode='MARKDOWN', chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
+	context.bot.send_message(parse_mode='MARKDOWN', chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 		
 #command /overwatch makes the bot tag everyone in the chat that plays Overwatch by their telegram username
-def overwatch(bot, update):		
+def overwatch(update, context):		
 	msg_ID = update.message.message_id
 	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf Overwatch?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /valorant makes the bot tag everyone in the chat that plays Valorant by their telegram username
-def valorant(bot, update):		
+def valorant(update, context):		
 	msg_ID = update.message.message_id
 	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Randomenzyme Valorant?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /amongus makes the bot tag everyone in the chat that plays Valorant by their telegram username
-def among_us(bot, update):		
+def among_us(update, context):		
 	msg_ID = update.message.message_id
 	question = "@SaveTheBeeees @anobdya @hotterthanahotdog @bleachonmytshirt @prankpatrol @AtraWolf @GangplankWinsIfHeDoesntAFK @Insolent_child @Randomenzyme Among Us?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 		
 #command /forest makes the bot tag everyone in the chat that plays The Forest by their telegram username
-def forest(bot, update):
+def forest(update, context):
 	msg_ID = update.message.message_id
 	question = "@prankpatrol @Insolent_child @AtraWolf @SaveTheBeeees @anobdya forest?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /dauntless makes the bot tag everyone in the chat that plays Dauntless by their telegram username
-def dauntless(bot, update):
+def dauntless(update, context):
 	msg_ID = update.message.message_id
 	question = "@prankpatrol @Insolent_child @AtraWolf @SaveTheBeeees @anobdya dauntless?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
-def rl(bot, update):
+def rl(update, context):
 	msg_ID = update.message.message_id
 	if(update.message.chat_id == -507793116):
 		question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam Rocket League?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
-def gta(bot, update):
+def gta(update, context):
 	msg_ID = update.message.message_id
 	if(update.message.chat_id == -507793116):
 		question = "@Bush69420 @PuddlesofDoom @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam GTA?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
-def nba(bot, update):
+def nba(update, context):
 	msg_ID = update.message.message_id
 	if(update.message.chat_id == -507793116):
 		question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @Uncle_Phil9 @SyyCam NBA?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
-def dice(bot, update):
+def dice(update, context):
 	msg_ID = update.message.message_id
 	#emoji='\U0001F3B0'
 	bot.send_dice(chat_id=update.message.chat_id, reply_to_message_id=msg_ID)
 
 #command /mhw makes the bot tag everyone in the chat that plays Monster hunter world by their telegram name
-def mhw(bot, update):
+def mhw(update, context):
 	msg_ID = update.message.message_id
 	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @bleachonmytshirt Monster Hunter?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 
 
 ######DATABASE FORTUNE / SUBMIT STUFF BELOW########
 
-def submit(bot, update):
+def submit(update, context):
 	msg_ID = update.message.message_id
 	word = update.message.reply_to_message.text
 	resp = db.submit(word)
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 
-def fortune(bot, update):
+def fortune(update, context):
 	msg_ID = update.message.message_id
-	resp = db.fortune(bot, update)
-	#bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
+	resp = db.fortune(update, context)
+	#context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 
-def kill(bot, update):
+def kill(update, context):
 	msg_ID = update.message.message_id
 	word = update.message.reply_to_message.text
 	resp = db.kill(word)
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 
 #Method that reads every message sent in chat, and if a user says certain words it will interrupt.
-def interjection(bot, update):
+def interjection(update, context):
 	#get some info for each message, like who sent it
 	from_user = update.message.from_user.first_name
 	from_user = from_user.lower()
@@ -288,7 +294,7 @@ def interjection(bot, update):
 	#if(from_user == "kalada" and "yyeai" in msg_lst):
 	#	i = random.randrange(len(strings.master_yi))
 	#	reply = strings.master_yi[i]
-	#	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
+	#	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
 	#If Josh says the word clash, then send KEKW sticker: CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA
 	if(update.message.from_user.id == 1052764994):
@@ -296,20 +302,20 @@ def interjection(bot, update):
 		#anti_josh_txt = msg_text.strip(".,!@#$%*/?\"'][:;_-()")
 		
 		if ("clash" in msg_text):
-			bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
+			context.bot.send_sticker(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, sticker="CAACAgEAAxkBAAIGwV8FWRznc257kSPI5Nf84aGxy_nsAAKJAAMVihsHYu3bTjyQwT4aBA")
 
 	if("brown" in msg_lst or "browns" in msg_lst):
 		reply = "The shared iq phenomenon occurs when there is one or more person of South East Asian descent in an online video game lobby. There is 80 iq allocated for brown people to use upon entering a lobby, however the amount of iq does not increase depending on the amount of South East Asian players in the lobby. This means that if there is one in the lobby they receive all 80 IQ points (a relatively large amount to what they are used to), however if another South East Asian joins the lobby the first one is forced to give the new one a portion of his iq (usually half) which means on average each SEA player only has 40 iq. This is an extreme problem when there are 3 or more SEA players in one lobby as each one will have only 25 or less IQ to work with, much to the dismay of their intellectually superior teammates"
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=reply)
 
 #If a user types in a command that doesn't exist then the bot will reply to them (doesn't work yet)
-def unknown(bot, update):
-	bot.send_message(chat_id=update.message.chat_id, text="Sorry I didn't understand that command. :(")
+def unknown(update, context):
+	context.bot.send_message(chat_id=update.message.chat_id, text="Sorry I didn't understand that command. :(")
 
 #command /caps [string] makes the bot reply with the same string but in all upper case
-def caps(bot, update, args):
-	text_caps = ' '.join(args).upper()
-	bot.send_message(chat_id=update.message.chat_id, text=text_caps)
+def caps(update, context):
+	text_caps = ' '.join(context.args).upper()
+	context.bot.send_message(chat_id=update.message.chat_id, text=text_caps)
 
 #Main method that is ran when the bot is started up
 def main():
@@ -325,15 +331,15 @@ def main():
 	
 	start_handler = CommandHandler('start', start)
 	help_handler = CommandHandler('help', help)
-	caps_handler = CommandHandler('caps', caps, pass_args=True)
-	stats_handler = CommandHandler('stats', stats, pass_args=True)
-	match_handler = CommandHandler('match', match, pass_args=True)
-	league_handler = CommandHandler('league', league, pass_args=True)
+	caps_handler = CommandHandler('caps', caps)
+	stats_handler = CommandHandler('stats', stats)
+	match_handler = CommandHandler('match', match)
+	league_handler = CommandHandler('league', league)
 	aram_handler = CommandHandler('aram', aram)
 	tft_handler = CommandHandler('tft', tft)
 	dota_handler = CommandHandler('dota', dota)
-	fortnite_handler = CommandHandler('fortnite', fortnite, pass_args=True)
-	apex_handler = CommandHandler('apex', apex, pass_args=True)
+	fortnite_handler = CommandHandler('fortnite', fortnite)
+	apex_handler = CommandHandler('apex', apex)
 	overwatch_handler = CommandHandler('overwatch', overwatch)
 	valorant_handler = CommandHandler('valorant', valorant)
 	amongus_handler = CommandHandler('amongus', among_us)
