@@ -7,12 +7,13 @@ import telegram
 import logging, random, os
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import league as lg
+import db as db
 import strings
 import fortnite as fnite
 import apex as apx
 
 #Telegram gives each bot a specific identifier or token that is required for it to work
-TOKEN = os.getenv('GAMES_BOT_TOKEN')
+TOKEN = '474898864:AAGroqV6gFJP5d8oPJhu_lDwSq92N_Atg3k'
 
 #command /start sends a message
 def start(bot, update):
@@ -88,6 +89,16 @@ def league(bot, update, args):
 			bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
 			bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
 
+def aram(bot, update):
+	msg_ID = update.message.message_id
+	question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam @GangplankWinsIfHeDoesntAFK ARAM?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+def tft(bot, update):
+	msg_ID = update.message.message_id
+	question = "@Bush69420 @PuddlesofDoom @kivorkdts @Uncle_Phil9 @SyyCam TFT?"
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
 #command /dota makes the bot tag everyone in the chat that plays Dota by their telegram username
 def dota(bot, update):
 	msg_ID = update.message.message_id
@@ -102,8 +113,14 @@ def ror(bot, update):
 
 def lor(bot, update):
 	msg_ID = update.message.message_id
-	question = "@SaveTheBeeees @anobdya @GangplankWinsIfHeDoesntAFK @Atrawolf @bantzdealer @bleachonmytshirt Runeterra?"
-	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	#-507793116 for joshs other chat
+	if(update.message.chat_id == -507793116):
+		question = "@stooolfan @GangplankWinsIfHeDoesntAFK Runeterra?"
+		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+	else:
+		msg_ID = update.message.message_id
+		question = "@SaveTheBeeees @anobdya @GangplankWinsIfHeDoesntAFK @Atrawolf @bantzdealer @bleachonmytshirt Runeterra?"
+		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /ror makes the bot tag everyone in the chat that plays Risk of Rain by their telegram username
 def r6(bot, update):
@@ -151,9 +168,14 @@ def fortnite(bot, update, args):
 def apex(bot, update, args):
 	msg_ID = update.message.message_id
 
+	#-507793116 for joshs other chat
 	if not args:
-		question = "@SaveTheBeeees @anobdya @hotterthanahotdog @AtraWolf @bleachonmytshirt @prankpatrol apex?"
-		bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+		if(update.message.chat_id == -507793116):
+			question = "@Bush69420 @stooolfan @Uncle_Phil9 @SyyCam apex?"
+			bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+		else:
+			question = "@SaveTheBeeees @anobdya @hotterthanahotdog @AtraWolf @bleachonmytshirt @prankpatrol apex?"
+			bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 	else:
 		platform = args[0]
 		player_name = ""
@@ -206,19 +228,19 @@ def dauntless(bot, update):
 def rl(bot, update):
 	msg_ID = update.message.message_id
 	if(update.message.chat_id == -507793116):
-		question = "josh rl?"
+		question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam Rocket League?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 def gta(bot, update):
 	msg_ID = update.message.message_id
 	if(update.message.chat_id == -507793116):
-		question = "josh gta?"
+		question = "@Bush69420 @PuddlesofDoom @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam GTA?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 def nba(bot, update):
 	msg_ID = update.message.message_id
 	if(update.message.chat_id == -507793116):
-		question = "josh nba?"
+		question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @Uncle_Phil9 @SyyCam NBA?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 def dice(bot, update):
@@ -231,6 +253,27 @@ def mhw(bot, update):
 	msg_ID = update.message.message_id
 	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @bleachonmytshirt Monster Hunter?"
 	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+
+
+######DATABASE FORTUNE / SUBMIT STUFF BELOW########
+
+def submit(bot, update):
+	msg_ID = update.message.message_id
+	word = update.message.reply_to_message.text
+	resp = db.submit(word)
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
+
+def fortune(bot, update):
+	msg_ID = update.message.message_id
+	resp = db.fortune(bot, update)
+	#bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
+
+def kill(bot, update):
+	msg_ID = update.message.message_id
+	word = update.message.reply_to_message.text
+	resp = db.kill(word)
+	bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
 
 #Method that reads every message sent in chat, and if a user says certain words it will interrupt.
 def interjection(bot, update):
@@ -286,6 +329,8 @@ def main():
 	stats_handler = CommandHandler('stats', stats, pass_args=True)
 	match_handler = CommandHandler('match', match, pass_args=True)
 	league_handler = CommandHandler('league', league, pass_args=True)
+	aram_handler = CommandHandler('aram', aram)
+	tft_handler = CommandHandler('tft', tft)
 	dota_handler = CommandHandler('dota', dota)
 	fortnite_handler = CommandHandler('fortnite', fortnite, pass_args=True)
 	apex_handler = CommandHandler('apex', apex, pass_args=True)
@@ -301,6 +346,9 @@ def main():
 	lor_handler = CommandHandler('lor', lor)
 	r6s_handler = CommandHandler('r6', r6)
 	mhw_handler = CommandHandler('mhw', mhw)
+	submit_handler = CommandHandler('submit', submit)
+	fortune_handler = CommandHandler('fortune', fortune)
+	kill_handler = CommandHandler('kill', kill)
 	dice_handler = CommandHandler('dice', dice)
 	interjection_handler = MessageHandler(Filters.all, interjection)
 
@@ -315,6 +363,8 @@ def main():
 	dispatcher.add_handler(stats_handler)
 	dispatcher.add_handler(match_handler)
 	dispatcher.add_handler(league_handler)
+	dispatcher.add_handler(aram_handler)
+	dispatcher.add_handler(tft_handler)
 	dispatcher.add_handler(dota_handler)
 	dispatcher.add_handler(fortnite_handler)
 	dispatcher.add_handler(apex_handler)
@@ -330,6 +380,9 @@ def main():
 	dispatcher.add_handler(lor_handler)
 	dispatcher.add_handler(r6s_handler)
 	dispatcher.add_handler(mhw_handler)
+	dispatcher.add_handler(submit_handler)
+	dispatcher.add_handler(fortune_handler)
+	dispatcher.add_handler(kill_handler)
 	dispatcher.add_handler(dice_handler)
 
 	dispatcher.add_handler(interjection_handler)	
