@@ -1,5 +1,4 @@
 requests
 telegram
 python-telegram-bot
-python-firebase
 Pillow
