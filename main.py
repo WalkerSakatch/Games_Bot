@@ -334,7 +334,7 @@ def main():
 	caps_handler = CommandHandler('caps', caps, pass_args=True)
 	stats_handler = CommandHandler('stats', stats, pass_args=True)
 	match_handler = CommandHandler('match', match, pass_args=True)
-	league_handler = CommandHandler('league', league, pass_args=True)
+	league_handler = CommandHandler('league', league)
 	aram_handler = CommandHandler('aram', aram)
 	tft_handler = CommandHandler('tft', tft)
 	dota_handler = CommandHandler('dota', dota)
