@@ -28,6 +28,10 @@ def fortune(update, context):
             fortune_num = random.randint(1, 4)
         #context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="New fortune num: {}".format(fortune_num))
 
-def kill(string):
-    firebase.delete('/fortunes', string)
-    return("Bye Bye!")
+def kill(word):
+    fortunes = firebase.get('/fortunes', None)
+    for fortune in fortunes:
+        if(fortunes.get(fortune) == word):
+            firebase.delete('/fortunes', fortune)
+            return("Gone. Reduced to atoms.")
+    return("That's not a fortune, bucko")

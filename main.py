@@ -275,6 +275,9 @@ def fortune(update, context):
 
 def kill(update, context):
 	msg_ID = update.message.message_id
+	if not update.message.reply_to_message:
+		context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text="reply to a fortune with /kill to remove it")
+		pass
 	word = update.message.reply_to_message.text
 	resp = db.kill(word)
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=resp)
