@@ -96,7 +96,7 @@ def aram(update, context):
 
 def tft(update, context):
 	msg_ID = update.message.message_id
-	question = "@Bush69420 @PuddlesofDoom @kivorkdts @Uncle_Phil9 @SyyCam TFT?"
+	question = "@Bush69420 @PuddlesofDoom @kivorkdts @Uncle_Phil9 @stooolfan TFT?"
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /dota makes the bot tag everyone in the chat that plays Dota by their telegram username
@@ -177,7 +177,7 @@ def apex(update, context):
 	#-507793116 for joshs other chat
 	if not context.args:
 		if(update.message.chat_id == -507793116):
-			question = "@Bush69420 @stooolfan @Uncle_Phil9 @SyyCam apex?"
+			question = "@Bush69420 @stooolfan @Uncle_Phil9 @SyyCam @kivorkdts apex?"
 			context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 		else:
 			question = "@SaveTheBeeees @anobdya @hotterthanahotdog @AtraWolf @bleachonmytshirt @prankpatrol apex?"
