@@ -91,12 +91,12 @@ def league(update, context):
 
 def aram(update, context):
 	msg_ID = update.message.message_id
-	question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam @GangplankWinsIfHeDoesntAFK ARAM?"
+	question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam @GangplankWinsIfHeDoesntAFK @k0rve ARAM?"
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 def tft(update, context):
 	msg_ID = update.message.message_id
-	question = "@Bush69420 @PuddlesofDoom @kivorkdts @Uncle_Phil9 @stooolfan TFT?"
+	question = "@Bush69420 @PuddlesofDoom @kivorkdts @Uncle_Phil9 @stooolfan @k0rve TFT?"
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 #command /dota makes the bot tag everyone in the chat that plays Dota by their telegram username
@@ -234,7 +234,7 @@ def dauntless(update, context):
 def rl(update, context):
 	msg_ID = update.message.message_id
 	if(update.message.chat_id == -507793116):
-		question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam Rocket League?"
+		question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam @k0rve Rocket League?"
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 def gta(update, context):
@@ -246,7 +246,7 @@ def gta(update, context):
 def nba(update, context):
 	msg_ID = update.message.message_id
 	if(update.message.chat_id == -507793116):
-		question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @Uncle_Phil9 @SyyCam NBA?"
+		question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @Uncle_Phil9 @SyyCam @k0rve NBA?"
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 def dice(update, context):
