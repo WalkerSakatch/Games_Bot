@@ -391,6 +391,7 @@ def main():
 	dispatcher.add_handler(lor_handler)
 	dispatcher.add_handler(r6s_handler)
 	dispatcher.add_handler(mhw_handler)
+	dispatcher.add_handler(halo_handler)
 	dispatcher.add_handler(submit_handler)
 	dispatcher.add_handler(fortune_handler)
 	dispatcher.add_handler(kill_handler)
