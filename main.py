@@ -89,6 +89,12 @@ def league(update, context):
 			context.bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
 			context.bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
 
+def halo(update, context):
+	msg_ID = update.message.message_id
+	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @fosbat @Insolent_child @MashallahMustafa Halo?"
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+
 def aram(update, context):
 	msg_ID = update.message.message_id
 	question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam @GangplankWinsIfHeDoesntAFK ARAM?"
