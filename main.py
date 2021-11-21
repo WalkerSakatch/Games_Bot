@@ -356,6 +356,7 @@ def main():
 	lor_handler = CommandHandler('lor', lor)
 	r6s_handler = CommandHandler('r6', r6)
 	mhw_handler = CommandHandler('mhw', mhw)
+	halo_handler = CommandHandler('halo', halo)
 	submit_handler = CommandHandler('submit', submit)
 	fortune_handler = CommandHandler('fortune', fortune)
 	kill_handler = CommandHandler('kill', kill)
