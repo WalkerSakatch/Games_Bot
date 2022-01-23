@@ -89,6 +89,12 @@ def league(update, context):
 			context.bot.send_chat_action(chat_id=update.message.chat_id, action="UPLOAD_PHOTO")
 			context.bot.send_photo(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, photo=open("statstest.png", 'rb'))
 
+def halo(update, context):
+	msg_ID = update.message.message_id
+	question = "@prankpatrol @AtraWolf @SaveTheBeeees @anobdya @fosbat @Insolent_child @MashallahMustafa Halo?"
+	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
+
+
 def aram(update, context):
 	msg_ID = update.message.message_id
 	question = "@Bush69420 @PuddlesofDoom @jarker1 @stooolfan @kivorkdts @Uncle_Phil9 @SyyCam @GangplankWinsIfHeDoesntAFK @k0rve ARAM?"
@@ -353,6 +359,7 @@ def main():
 	lor_handler = CommandHandler('lor', lor)
 	r6s_handler = CommandHandler('r6', r6)
 	mhw_handler = CommandHandler('mhw', mhw)
+	halo_handler = CommandHandler('halo', halo)
 	submit_handler = CommandHandler('submit', submit)
 	fortune_handler = CommandHandler('fortune', fortune)
 	kill_handler = CommandHandler('kill', kill)
@@ -387,6 +394,7 @@ def main():
 	dispatcher.add_handler(lor_handler)
 	dispatcher.add_handler(r6s_handler)
 	dispatcher.add_handler(mhw_handler)
+	dispatcher.add_handler(halo_handler)
 	dispatcher.add_handler(submit_handler)
 	dispatcher.add_handler(fortune_handler)
 	dispatcher.add_handler(kill_handler)
