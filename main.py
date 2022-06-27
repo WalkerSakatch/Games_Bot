@@ -113,7 +113,7 @@ def tft(update, context):
 
 def dota(update, context):
 	msg_ID = update.message.message_id
-	question = "@AtraWolf @prankpatrol @anobdya dota?"
+	question = "@AtraWolf @prankpatrol @anobdya @amikhz dota?"
 	context.bot.send_message(chat_id=update.message.chat_id, reply_to_message_id=msg_ID, text=question)
 
 
